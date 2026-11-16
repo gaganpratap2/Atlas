@@ -43,3 +43,7 @@ htmlcov/
 *.pem
 *.key
 secrets/
+
+
+BENCHMARKS.md
+PROJECT_STATE.md

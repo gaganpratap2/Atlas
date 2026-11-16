@@ -87,6 +87,40 @@ MarketEvent Decoder::decode(
                 .timestamp =
                     read_le<std::uint64_t>(bytes, 39)
             };
+        
+        case RawMessageType::OrderBookUpdate:
+    if (bytes.size() != 32) {
+        throw std::runtime_error(
+            "invalid order-book update size");
+    }
+
+    {
+        const auto raw_side = bytes[7];
+
+        if (raw_side > 1) {
+            throw std::runtime_error(
+                "invalid order-book side");
+        }
+
+        return OrderBookUpdate{
+            .instrument_id =
+                read_le<std::uint32_t>(bytes, 3),
+
+            .side =
+                raw_side == 0
+                    ? Side::Buy
+                    : Side::Sell,
+
+            .price =
+                read_le<std::int64_t>(bytes, 8),
+
+            .quantity =
+                read_le<std::uint64_t>(bytes, 16),
+
+            .timestamp =
+                read_le<std::uint64_t>(bytes, 24)
+        };
+    }
 
         default:
             throw std::runtime_error(
@@ -95,3 +129,16 @@ MarketEvent Decoder::decode(
 }
 
 }  // namespace atlas::market_data
+
+
+
+/*
+Offset   Size   Field
+0        2      message_length
+2        1      message_type
+3        4      instrument_id
+7        1      side
+8        8      price
+16       8      quantity
+24       8      timestamp
+*/

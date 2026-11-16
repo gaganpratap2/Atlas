@@ -178,6 +178,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{CC4FBD59-238A-3BBE-B3E6-F662012EB1F4}</Project>
       <Name>atlas_core_test</Name>
     </ProjectReference>
+    <ProjectReference Include="D:\Atlas\build\cpp\atlas_decoder_benchmark.vcxproj">
+      <Project>{531A67F4-E67D-3ADA-A275-D6FD30200267}</Project>
+      <Name>atlas_decoder_benchmark</Name>
+    </ProjectReference>
     <ProjectReference Include="D:\Atlas\build\cpp\atlas_hft.vcxproj">
       <Project>{8B52E036-ECA4-325E-B20D-61FA26754E02}</Project>
       <Name>atlas_hft</Name>

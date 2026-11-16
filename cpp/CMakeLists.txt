@@ -22,6 +22,15 @@ target_link_libraries(
         atlas_core
 )
 
+add_executable(atlas_decoder_benchmark
+    tests/decoder_benchmark.cpp
+    src/market_data/decoder.cpp
+)
+target_include_directories(atlas_decoder_benchmark
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
 # Core tests
 add_executable(atlas_core_test
     tests/core_test.cpp

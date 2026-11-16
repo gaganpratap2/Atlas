@@ -8,6 +8,9 @@
       <FullPath>D:\Atlas\build\cpp\Debug\atlas_core_test.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
+      <FullPath>D:\Atlas\build\cpp\Debug\atlas_decoder_benchmark.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
       <FullPath>D:\Atlas\build\cpp\Debug\atlas_hft.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
