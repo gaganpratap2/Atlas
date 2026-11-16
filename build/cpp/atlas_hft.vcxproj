@@ -368,6 +368,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="D:\Atlas\cpp\src\market_data\validator.cpp" />
     <ClCompile Include="D:\Atlas\cpp\src\market_data\counting_processor.cpp" />
     <ClCompile Include="D:\Atlas\cpp\src\market_data\test_feed.cpp" />
+    <ClCompile Include="D:\Atlas\cpp\src\market_data\decoder.cpp" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

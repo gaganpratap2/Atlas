@@ -13,6 +13,7 @@ add_executable(atlas_hft
     src/market_data/validator.cpp
     src/market_data/counting_processor.cpp
     src/market_data/test_feed.cpp
+    src/market_data/decoder.cpp
 )
 
 target_link_libraries(
@@ -38,6 +39,7 @@ add_executable(atlas_market_data_test
     src/market_data/validator.cpp
     src/market_data/counting_processor.cpp
     src/market_data/test_feed.cpp
+    src/market_data/decoder.cpp
 )
 
 target_link_libraries(

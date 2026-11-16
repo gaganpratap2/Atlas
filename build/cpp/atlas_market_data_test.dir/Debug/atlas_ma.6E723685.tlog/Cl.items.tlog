@@ -2,3 +2,4 @@ D:\Atlas\cpp\tests\market_data_test.cpp;D:\Atlas\build\cpp\atlas_market_data_tes
 D:\Atlas\cpp\src\market_data\validator.cpp;D:\Atlas\build\cpp\atlas_market_data_test.dir\Debug\validator.obj
 D:\Atlas\cpp\src\market_data\counting_processor.cpp;D:\Atlas\build\cpp\atlas_market_data_test.dir\Debug\counting_processor.obj
 D:\Atlas\cpp\src\market_data\test_feed.cpp;D:\Atlas\build\cpp\atlas_market_data_test.dir\Debug\test_feed.obj
+D:\Atlas\cpp\src\market_data\decoder.cpp;D:\Atlas\build\cpp\atlas_market_data_test.dir\Debug\decoder.obj
