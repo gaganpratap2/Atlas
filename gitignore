@@ -1,0 +1,45 @@
+# Python
+python/.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# C++
+build/
+cmake-build-*/
+compile_commands.json
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Data
+data/
+*.parquet
+*.feather
+*.csv
+
+# Logs
+logs/
+*.log
+
+# Generated artifacts
+dist/
+coverage/
+htmlcov/
+
+# Secrets
+*.pem
+*.key
+secrets/
