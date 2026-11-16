@@ -1,3 +1,4 @@
+
 add_library(atlas_core INTERFACE)
 
 target_include_directories(
@@ -6,8 +7,12 @@ target_include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
+# Main application
 add_executable(atlas_hft
     src/main.cpp
+    src/market_data/validator.cpp
+    src/market_data/counting_processor.cpp
+    src/market_data/test_feed.cpp
 )
 
 target_link_libraries(
@@ -16,19 +21,38 @@ target_link_libraries(
         atlas_core
 )
 
-if(ATLAS_BUILD_TESTS)
-    add_executable(atlas_core_test
-        tests/core_test.cpp
-    )
+# Core tests
+add_executable(atlas_core_test
+    tests/core_test.cpp
+)
 
-    target_link_libraries(
-        atlas_core_test
-        PRIVATE
-            atlas_core
-    )
+target_link_libraries(
+    atlas_core_test
+    PRIVATE
+        atlas_core
+)
 
-    add_test(
-        NAME atlas_core_test
-        COMMAND atlas_core_test
-    )
-endif()
+# Market data tests
+add_executable(atlas_market_data_test
+    tests/market_data_test.cpp
+    src/market_data/validator.cpp
+    src/market_data/counting_processor.cpp
+    src/market_data/test_feed.cpp
+)
+
+target_link_libraries(
+    atlas_market_data_test
+    PRIVATE
+        atlas_core
+)
+
+# Register tests
+add_test(
+    NAME atlas_core_test
+    COMMAND atlas_core_test
+)
+
+add_test(
+    NAME atlas_market_data_test
+    COMMAND atlas_market_data_test
+)

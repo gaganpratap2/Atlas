@@ -4,6 +4,15 @@
     <ClCompile Include="D:\Atlas\cpp\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\Atlas\cpp\src\market_data\validator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Atlas\cpp\src\market_data\counting_processor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Atlas\cpp\src\market_data\test_feed.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="D:\Atlas\cpp\CMakeLists.txt" />

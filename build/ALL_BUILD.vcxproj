@@ -182,6 +182,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{8B52E036-ECA4-325E-B20D-61FA26754E02}</Project>
       <Name>atlas_hft</Name>
     </ProjectReference>
+    <ProjectReference Include="D:\Atlas\build\cpp\atlas_market_data_test.vcxproj">
+      <Project>{6E723685-0615-3762-9FF0-F8B241E00F2A}</Project>
+      <Name>atlas_market_data_test</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

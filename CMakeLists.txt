@@ -13,9 +13,9 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 option(ATLAS_BUILD_TESTS "Build ATLAS-HFT tests" ON)
 
-add_subdirectory(cpp)
 
 if(ATLAS_BUILD_TESTS)
-    enable_testing()
+enable_testing()
 endif()
 
+add_subdirectory(cpp)

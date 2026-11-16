@@ -3,4 +3,5 @@ D:/Atlas/build/CMakeFiles/ALL_BUILD.dir
 D:/Atlas/build/CMakeFiles/ZERO_CHECK.dir
 D:/Atlas/build/cpp/CMakeFiles/atlas_hft.dir
 D:/Atlas/build/cpp/CMakeFiles/atlas_core_test.dir
+D:/Atlas/build/cpp/CMakeFiles/atlas_market_data_test.dir
 D:/Atlas/build/cpp/CMakeFiles/RUN_TESTS.dir
