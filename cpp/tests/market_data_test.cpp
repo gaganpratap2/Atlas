@@ -1,4 +1,4 @@
-
+#include <vector>
 #include <cassert>
 #include <cstdint>
 #include <exception>
@@ -16,6 +16,7 @@
 #include "atlas/market_data/counting_processor.hpp"
 #include "atlas/market_data/test_feed.hpp"
 #include "atlas/market_data/decoder.hpp"
+#include "atlas/market_data/binary_replayer.hpp"
 
 int main() {
     using namespace atlas::market_data;
@@ -313,6 +314,420 @@ int main() {
     std::filesystem::remove(path);
 }
 
+
+    {
+    using namespace atlas::market_data;
+
+    const std::filesystem::path path =
+        "atlas_day4_replay_test.bin";
+
+    std::filesystem::remove(path);
+
+    BinaryMarketDataRecorder recorder;
+    recorder.open(path);
+
+    const Trade trade{
+        1,
+        10117,
+        100,
+        1'000'000
+    };
+
+    const Quote quote{
+        1,
+        10100,
+        50,
+        10120,
+        75,
+        1'000'001
+    };
+
+    const OrderBookUpdate update{
+        1,
+        Side::Buy,
+        10096,
+        25,
+        1'000'002
+    };
+
+    recorder.record(trade);
+    recorder.record(quote);
+    recorder.record(update);
+
+    recorder.close();
+
+    BinaryMarketDataReplayer replayer;
+    replayer.open(path);
+
+    std::size_t event_count = 0;
+
+    replayer.replay(
+        [&](const MarketEvent& event) {
+            switch (event_count) {
+            case 0: {
+                assert(
+                    std::holds_alternative<Trade>(event)
+                );
+
+                const auto& value =
+                    std::get<Trade>(event);
+
+                assert(value.instrument_id == 1);
+                assert(value.price == 10117);
+                assert(value.quantity == 100);
+                assert(value.timestamp == 1'000'000);
+
+                break;
+            }
+
+            case 1: {
+                assert(
+                    std::holds_alternative<Quote>(event)
+                );
+
+                const auto& value =
+                    std::get<Quote>(event);
+
+                assert(value.instrument_id == 1);
+                assert(value.bid_price == 10100);
+                assert(value.bid_quantity == 50);
+                assert(value.ask_price == 10120);
+                assert(value.ask_quantity == 75);
+                assert(value.timestamp == 1'000'001);
+
+                break;
+            }
+
+            case 2: {
+                assert(
+                    std::holds_alternative<OrderBookUpdate>(
+                        event
+                    )
+                );
+
+                const auto& value =
+                    std::get<OrderBookUpdate>(event);
+
+                assert(value.instrument_id == 1);
+                assert(value.side == Side::Buy);
+                assert(value.price == 10096);
+                assert(value.quantity == 25);
+                assert(value.timestamp == 1'000'002);
+
+                break;
+            }
+
+            default:
+                assert(false);
+            }
+
+            ++event_count;
+        }
+    );
+
+    assert(event_count == 3);
+
+    replayer.close();
+
+    std::filesystem::remove(path);
+}
+
+{
+    using namespace atlas::market_data;
+
+    const std::filesystem::path path =
+        "atlas_invalid_recording.bin";
+
+    {
+        std::ofstream output(
+            path,
+            std::ios::binary | std::ios::trunc
+        );
+
+        const std::uint8_t bytes[] = {
+            0x00, 0x00, 0x00, 0x00,
+            0x01, 0x00
+        };
+
+        output.write(
+            reinterpret_cast<const char*>(bytes),
+            sizeof(bytes)
+        );
+    }
+
+    BinaryMarketDataReplayer replayer;
+
+    bool threw = false;
+
+    try {
+        replayer.open(path);
+    } catch (const std::runtime_error&) {
+        threw = true;
+    }
+
+    assert(threw);
+
+    std::filesystem::remove(path);
+}
+
+
+{
+    using namespace atlas::market_data;
+
+    const std::filesystem::path path =
+        "atlas_deterministic_replay_test.bin";
+
+    std::filesystem::remove(path);
+
+    BinaryMarketDataRecorder recorder;
+    recorder.open(path);
+
+    const Trade trade{
+        7,
+        15000,
+        10,
+        2'000'000
+    };
+
+    const Quote quote{
+        7,
+        14990,
+        20,
+        15010,
+        30,
+        2'000'001
+    };
+
+    const OrderBookUpdate update{
+        7,
+        Side::Sell,
+        15005,
+        15,
+        2'000'002
+    };
+
+    recorder.record(trade);
+    recorder.record(quote);
+    recorder.record(update);
+
+    recorder.close();
+
+    BinaryMarketDataReplayer replayer;
+    replayer.open(path);
+
+    std::vector<MarketEvent> replayed_events;
+
+    replayer.replay(
+        [&](const MarketEvent& event) {
+            replayed_events.push_back(event);
+        }
+    );
+
+    replayer.close();
+
+    assert(replayed_events.size() == 3);
+
+    assert(
+        std::holds_alternative<Trade>(
+            replayed_events[0]
+        )
+    );
+
+    assert(
+        std::holds_alternative<Quote>(
+            replayed_events[1]
+        )
+    );
+
+    assert(
+        std::holds_alternative<OrderBookUpdate>(
+            replayed_events[2]
+        )
+    );
+
+    const auto& replayed_trade =
+        std::get<Trade>(replayed_events[0]);
+
+    assert(replayed_trade.instrument_id == 7);
+    assert(replayed_trade.price == 15000);
+    assert(replayed_trade.quantity == 10);
+    assert(replayed_trade.timestamp == 2'000'000);
+
+    const auto& replayed_quote =
+        std::get<Quote>(replayed_events[1]);
+
+    assert(replayed_quote.instrument_id == 7);
+    assert(replayed_quote.bid_price == 14990);
+    assert(replayed_quote.bid_quantity == 20);
+    assert(replayed_quote.ask_price == 15010);
+    assert(replayed_quote.ask_quantity == 30);
+    assert(replayed_quote.timestamp == 2'000'001);
+
+    const auto& replayed_update =
+        std::get<OrderBookUpdate>(
+            replayed_events[2]
+        );
+
+    assert(replayed_update.instrument_id == 7);
+    assert(replayed_update.side == Side::Sell);
+    assert(replayed_update.price == 15005);
+    assert(replayed_update.quantity == 15);
+    assert(replayed_update.timestamp == 2'000'002);
+
+    std::filesystem::remove(path);
+}
+
+
+
+{
+    using namespace atlas::market_data;
+
+    const std::filesystem::path path =
+        "atlas_replay_twice_test.bin";
+
+    std::filesystem::remove(path);
+
+    BinaryMarketDataRecorder recorder;
+    recorder.open(path);
+
+    recorder.record(
+        Trade{
+            3,
+            12000,
+            5,
+            3'000'000
+        }
+    );
+
+    recorder.record(
+        Quote{
+            3,
+            11990,
+            10,
+            12010,
+            12,
+            3'000'001
+        }
+    );
+
+    recorder.close();
+
+    BinaryMarketDataReplayer replayer;
+    replayer.open(path);
+
+    std::vector<MarketEvent> first_replay;
+
+    replayer.replay(
+        [&](const MarketEvent& event) {
+            first_replay.push_back(event);
+        }
+    );
+
+    replayer.close();
+
+    replayer.open(path);
+
+    std::vector<MarketEvent> second_replay;
+
+    replayer.replay(
+        [&](const MarketEvent& event) {
+            second_replay.push_back(event);
+        }
+    );
+
+    replayer.close();
+
+    assert(first_replay.size() == 2);
+    assert(second_replay.size() == 2);
+
+    assert(
+        std::holds_alternative<Trade>(
+            first_replay[0]
+        )
+    );
+
+    assert(
+        std::holds_alternative<Trade>(
+            second_replay[0]
+        )
+    );
+
+    const auto& first_trade =
+        std::get<Trade>(first_replay[0]);
+
+    const auto& second_trade =
+        std::get<Trade>(second_replay[0]);
+
+    assert(
+        first_trade.instrument_id ==
+        second_trade.instrument_id
+    );
+
+    assert(
+        first_trade.price ==
+        second_trade.price
+    );
+
+    assert(
+        first_trade.quantity ==
+        second_trade.quantity
+    );
+
+    assert(
+        first_trade.timestamp ==
+        second_trade.timestamp
+    );
+
+    assert(
+        std::holds_alternative<Quote>(
+            first_replay[1]
+        )
+    );
+
+    assert(
+        std::holds_alternative<Quote>(
+            second_replay[1]
+        )
+    );
+
+    const auto& first_quote =
+        std::get<Quote>(first_replay[1]);
+
+    const auto& second_quote =
+        std::get<Quote>(second_replay[1]);
+
+    assert(
+        first_quote.instrument_id ==
+        second_quote.instrument_id
+    );
+
+    assert(
+        first_quote.bid_price ==
+        second_quote.bid_price
+    );
+
+    assert(
+        first_quote.bid_quantity ==
+        second_quote.bid_quantity
+    );
+
+    assert(
+        first_quote.ask_price ==
+        second_quote.ask_price
+    );
+
+    assert(
+        first_quote.ask_quantity ==
+        second_quote.ask_quantity
+    );
+
+    assert(
+        first_quote.timestamp ==
+        second_quote.timestamp
+    );
+
+    std::filesystem::remove(path);
+}
 
     return 0;
 }

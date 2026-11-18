@@ -149,7 +149,7 @@ namespace atlas::market_data{
 void BinaryMarketDataRecorder::write_order_book_update(
     const OrderBookUpdate& update
 ) {
-    constexpr std::uint32_t record_length = 26;
+    constexpr std::uint32_t record_length = 30;
 
     write_u32(record_length);
     write_u8(

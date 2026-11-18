@@ -15,21 +15,32 @@ add_executable(atlas_hft
     src/market_data/test_feed.cpp
     src/market_data/decoder.cpp
     src/market_data/binary_recorder.cpp
+    src/market_data/binary_replayer.cpp
 )
 
-target_link_libraries(
-    atlas_hft
-    PRIVATE
-        atlas_core
-)
+target_link_libraries(atlas_hft PRIVATE atlas_core)
 
+# Decoder benchmark
 add_executable(atlas_decoder_benchmark
     tests/decoder_benchmark.cpp
     src/market_data/decoder.cpp
 )
-target_include_directories(atlas_decoder_benchmark
-    PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
+
+target_link_libraries(
+    atlas_decoder_benchmark
+    PRIVATE atlas_core
+)
+
+# Replay benchmark
+add_executable(atlas_replay_benchmark
+    tests/replay_benchmark.cpp
+    src/market_data/binary_recorder.cpp
+    src/market_data/binary_replayer.cpp
+)
+
+target_link_libraries(
+    atlas_replay_benchmark
+    PRIVATE atlas_core
 )
 
 # Core tests
@@ -39,8 +50,7 @@ add_executable(atlas_core_test
 
 target_link_libraries(
     atlas_core_test
-    PRIVATE
-        atlas_core
+    PRIVATE atlas_core
 )
 
 # Market data tests
@@ -51,15 +61,17 @@ add_executable(atlas_market_data_test
     src/market_data/test_feed.cpp
     src/market_data/decoder.cpp
     src/market_data/binary_recorder.cpp
+    src/market_data/binary_replayer.cpp
 )
 
 target_link_libraries(
     atlas_market_data_test
-    PRIVATE
-        atlas_core
+    PRIVATE atlas_core
 )
 
 # Register tests
+enable_testing()
+
 add_test(
     NAME atlas_core_test
     COMMAND atlas_core_test

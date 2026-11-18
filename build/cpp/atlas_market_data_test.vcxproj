@@ -370,6 +370,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="D:\Atlas\cpp\src\market_data\test_feed.cpp" />
     <ClCompile Include="D:\Atlas\cpp\src\market_data\decoder.cpp" />
     <ClCompile Include="D:\Atlas\cpp\src\market_data\binary_recorder.cpp" />
+    <ClCompile Include="D:\Atlas\cpp\src\market_data\binary_replayer.cpp" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

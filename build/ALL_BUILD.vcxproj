@@ -190,6 +190,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{6E723685-0615-3762-9FF0-F8B241E00F2A}</Project>
       <Name>atlas_market_data_test</Name>
     </ProjectReference>
+    <ProjectReference Include="D:\Atlas\build\cpp\atlas_replay_benchmark.vcxproj">
+      <Project>{379FD66E-9F14-32D8-92CB-B537C513B86D}</Project>
+      <Name>atlas_replay_benchmark</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
