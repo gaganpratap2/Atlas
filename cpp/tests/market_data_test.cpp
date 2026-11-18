@@ -5,6 +5,11 @@
 #include <variant>
 #include <vector>
 
+#include <filesystem>
+#include <fstream>
+#include "atlas/market_data/recording.hpp"
+
+#include "atlas/market_data/binary_recorder.hpp"
 #include "atlas/market_data/types.hpp"
 #include "atlas/market_data/validator.hpp"
 #include "atlas/market_data/event.hpp"
@@ -220,6 +225,94 @@ int main() {
     }
 
     assert(invalid_side_threw);
+
+
+
+
+{
+    using namespace atlas::market_data;
+
+    const std::filesystem::path path =
+        "atlas_day4_test_recording.bin";
+
+    std::filesystem::remove(path);
+
+    BinaryMarketDataRecorder recorder;
+
+    // 1. Check that recording before opening throws an exception.
+    bool threw_before_open = false;
+
+    try {
+        recorder.record(
+            Trade{
+                1,
+                10117,
+                100,
+                1'000'000
+            }
+        );
+    } catch (const std::runtime_error&) {
+        threw_before_open = true;
+    }
+
+    assert(threw_before_open);
+
+    // 2. Open the binary recording file.
+    recorder.open(path);
+
+    // 3. Create a Trade event.
+    const Trade trade{
+        1,
+        10117,
+        100,
+        1'000'000
+    };
+
+    // 4. Record the Trade event.
+    recorder.record(trade);
+
+    // 5. Close the recording file.
+    recorder.close();
+
+    // 6. Check that the file exists and contains data.
+    assert(std::filesystem::exists(path));
+    assert(std::filesystem::file_size(path) > 0);
+
+    // 7. Open the file for reading.
+    std::ifstream input(
+        path,
+        std::ios::binary
+    );
+
+    assert(input.is_open());
+
+    // 8. Read the first four bytes (magic number).
+    std::uint8_t magic_bytes[4]{};
+
+    input.read(
+        reinterpret_cast<char*>(magic_bytes),
+        sizeof(magic_bytes)
+    );
+
+    assert(input);
+
+    // 9. Reconstruct the little-endian magic number.
+    const std::uint32_t magic =
+        static_cast<std::uint32_t>(magic_bytes[0]) |
+        (static_cast<std::uint32_t>(magic_bytes[1]) << 8) |
+        (static_cast<std::uint32_t>(magic_bytes[2]) << 16) |
+        (static_cast<std::uint32_t>(magic_bytes[3]) << 24);
+
+    // 10. Verify the magic number.
+    assert(magic == kRecordingMagic);
+
+    // 11. Close the input file.
+    input.close();
+
+    // 12. Remove the test file.
+    std::filesystem::remove(path);
+}
+
 
     return 0;
 }

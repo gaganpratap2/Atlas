@@ -16,6 +16,9 @@
     <ClCompile Include="D:\Atlas\cpp\src\market_data\decoder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\Atlas\cpp\src\market_data\binary_recorder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="D:\Atlas\cpp\CMakeLists.txt" />

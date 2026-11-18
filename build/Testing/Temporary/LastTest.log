@@ -1,17 +1,17 @@
-Start testing: Nov 16 12:24 India Standard Time
+Start testing: Nov 18 19:44 India Standard Time
 ----------------------------------------------------------
 1/2 Testing: atlas_core_test
 1/2 Test: atlas_core_test
 Command: "D:/Atlas/build/cpp/Debug/atlas_core_test.exe"
 Directory: D:/Atlas/build/cpp
-"atlas_core_test" start time: Nov 16 12:24 India Standard Time
+"atlas_core_test" start time: Nov 18 19:44 India Standard Time
 Output:
 ----------------------------------------------------------
 <end of output>
-Test time =   0.05 sec
+Test time =   0.08 sec
 ----------------------------------------------------------
 Test Passed.
-"atlas_core_test" end time: Nov 16 12:24 India Standard Time
+"atlas_core_test" end time: Nov 18 19:44 India Standard Time
 "atlas_core_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -19,15 +19,15 @@ Test Passed.
 2/2 Test: atlas_market_data_test
 Command: "D:/Atlas/build/cpp/Debug/atlas_market_data_test.exe"
 Directory: D:/Atlas/build/cpp
-"atlas_market_data_test" start time: Nov 16 12:24 India Standard Time
+"atlas_market_data_test" start time: Nov 18 19:44 India Standard Time
 Output:
 ----------------------------------------------------------
 <end of output>
-Test time =   0.06 sec
+Test time =   0.09 sec
 ----------------------------------------------------------
 Test Passed.
-"atlas_market_data_test" end time: Nov 16 12:24 India Standard Time
+"atlas_market_data_test" end time: Nov 18 19:44 India Standard Time
 "atlas_market_data_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Nov 16 12:24 India Standard Time
+End testing: Nov 18 19:44 India Standard Time
