@@ -47,3 +47,20 @@ secrets/
 
 BENCHMARKS.md
 PROJECT_STATE.md
+
+
+# Build directories
+build/
+cmake-build-*/
+
+# Compiled files
+*.obj
+*.o
+*.exe
+*.dll
+*.lib
+*.pdb
+*.ilk
+
+# Visual Studio
+.vs/
