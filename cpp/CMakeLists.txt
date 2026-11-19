@@ -16,6 +16,7 @@ add_executable(atlas_hft
     src/market_data/decoder.cpp
     src/market_data/binary_recorder.cpp
     src/market_data/binary_replayer.cpp
+    src/order_book/order_book.cpp
 )
 
 target_link_libraries(atlas_hft PRIVATE atlas_core)
@@ -30,6 +31,14 @@ target_link_libraries(
     atlas_decoder_benchmark
     PRIVATE atlas_core
 )
+
+add_executable(atlas_order_book_benchmark
+    tests/order_book_benchmark.cpp
+    src/order_book/order_book.cpp
+)
+
+target_link_libraries(atlas_order_book_benchmark PRIVATE atlas_core)
+
 
 # Replay benchmark
 add_executable(atlas_replay_benchmark
@@ -80,4 +89,22 @@ add_test(
 add_test(
     NAME atlas_market_data_test
     COMMAND atlas_market_data_test
+)
+
+
+add_executable(
+    atlas_order_book_test
+    tests/order_book_test.cpp
+    src/order_book/order_book.cpp
+)
+
+target_link_libraries(
+    atlas_order_book_test
+    PRIVATE
+    atlas_core
+)
+
+add_test(
+    NAME atlas_order_book_test
+    COMMAND atlas_order_book_test
 )

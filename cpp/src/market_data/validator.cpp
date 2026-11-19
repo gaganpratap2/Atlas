@@ -21,7 +21,6 @@ namespace atlas::market_data{
 bool is_valid(const OrderBookUpdate& update) {
     return update.instrument_id != 0 &&
            update.price > 0 &&
-           update.quantity > 0 &&
            update.timestamp > 0;
 }
 

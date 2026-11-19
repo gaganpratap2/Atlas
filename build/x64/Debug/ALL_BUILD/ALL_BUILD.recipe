@@ -17,6 +17,12 @@
       <FullPath>D:\Atlas\build\cpp\Debug\atlas_market_data_test.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
+      <FullPath>D:\Atlas\build\cpp\Debug\atlas_order_book_benchmark.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\Atlas\build\cpp\Debug\atlas_order_book_test.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
       <FullPath>D:\Atlas\build\cpp\Debug\atlas_replay_benchmark.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>

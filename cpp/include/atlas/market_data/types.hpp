@@ -4,7 +4,7 @@
 
 namespace atlas::market_data{
 
-    using InstrumentId = std::uint32_t;
+using InstrumentId = std::uint32_t;
 using Price = std::int64_t;
 using Quantity = std::uint64_t;
 using Timestamp = std::uint64_t;

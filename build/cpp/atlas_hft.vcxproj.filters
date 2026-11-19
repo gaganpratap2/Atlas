@@ -22,6 +22,9 @@
     <ClCompile Include="D:\Atlas\cpp\src\market_data\binary_replayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\Atlas\cpp\src\order_book\order_book.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="D:\Atlas\cpp\CMakeLists.txt" />
