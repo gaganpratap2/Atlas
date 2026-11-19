@@ -64,3 +64,10 @@ cmake-build-*/
 
 # Visual Studio
 .vs/
+
+# Project state
+project_state/
+
+# Benchmark outputs
+benchmark/
+benchmarks/
