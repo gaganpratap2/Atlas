@@ -1,17 +1,17 @@
-Start testing: Nov 19 09:52 India Standard Time
+Start testing: Nov 21 20:21 India Standard Time
 ----------------------------------------------------------
 1/3 Testing: atlas_core_test
 1/3 Test: atlas_core_test
 Command: "D:/Atlas/build/cpp/Debug/atlas_core_test.exe"
 Directory: D:/Atlas/build/cpp
-"atlas_core_test" start time: Nov 19 09:52 India Standard Time
+"atlas_core_test" start time: Nov 21 20:21 India Standard Time
 Output:
 ----------------------------------------------------------
 <end of output>
-Test time =   0.04 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"atlas_core_test" end time: Nov 19 09:52 India Standard Time
+"atlas_core_test" end time: Nov 21 20:21 India Standard Time
 "atlas_core_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -19,14 +19,14 @@ Test Passed.
 2/3 Test: atlas_market_data_test
 Command: "D:/Atlas/build/cpp/Debug/atlas_market_data_test.exe"
 Directory: D:/Atlas/build/cpp
-"atlas_market_data_test" start time: Nov 19 09:52 India Standard Time
+"atlas_market_data_test" start time: Nov 21 20:21 India Standard Time
 Output:
 ----------------------------------------------------------
 <end of output>
 Test time =   0.06 sec
 ----------------------------------------------------------
 Test Passed.
-"atlas_market_data_test" end time: Nov 19 09:52 India Standard Time
+"atlas_market_data_test" end time: Nov 21 20:21 India Standard Time
 "atlas_market_data_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -34,15 +34,15 @@ Test Passed.
 3/3 Test: atlas_order_book_test
 Command: "D:/Atlas/build/cpp/Debug/atlas_order_book_test.exe"
 Directory: D:/Atlas/build/cpp
-"atlas_order_book_test" start time: Nov 19 09:52 India Standard Time
+"atlas_order_book_test" start time: Nov 21 20:21 India Standard Time
 Output:
 ----------------------------------------------------------
 <end of output>
-Test time =   0.04 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"atlas_order_book_test" end time: Nov 19 09:52 India Standard Time
+"atlas_order_book_test" end time: Nov 21 20:21 India Standard Time
 "atlas_order_book_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Nov 19 09:52 India Standard Time
+End testing: Nov 21 20:21 India Standard Time

@@ -8,4 +8,5 @@ D:/Atlas/build/cpp/CMakeFiles/atlas_replay_benchmark.dir
 D:/Atlas/build/cpp/CMakeFiles/atlas_core_test.dir
 D:/Atlas/build/cpp/CMakeFiles/atlas_market_data_test.dir
 D:/Atlas/build/cpp/CMakeFiles/atlas_order_book_test.dir
+D:/Atlas/build/cpp/CMakeFiles/atlas_order_book_metrics_benchmark.dir
 D:/Atlas/build/cpp/CMakeFiles/RUN_TESTS.dir

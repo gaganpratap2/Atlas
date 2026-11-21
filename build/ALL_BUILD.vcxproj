@@ -194,6 +194,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{366A2F2B-CA9D-30C1-9DD2-0A8886816DDA}</Project>
       <Name>atlas_order_book_benchmark</Name>
     </ProjectReference>
+    <ProjectReference Include="D:\Atlas\build\cpp\atlas_order_book_metrics_benchmark.vcxproj">
+      <Project>{31C5A766-E2A4-3D83-9A9D-83890EADBC61}</Project>
+      <Name>atlas_order_book_metrics_benchmark</Name>
+    </ProjectReference>
     <ProjectReference Include="D:\Atlas\build\cpp\atlas_order_book_test.vcxproj">
       <Project>{B3A86471-B1C7-3023-B55F-038DD0C02A1F}</Project>
       <Name>atlas_order_book_test</Name>

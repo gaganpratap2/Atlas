@@ -108,3 +108,11 @@ add_test(
     NAME atlas_order_book_test
     COMMAND atlas_order_book_test
 )
+
+
+add_executable(atlas_order_book_metrics_benchmark
+    tests/order_book_metrics_benchmark.cpp
+    src/order_book/order_book.cpp
+)
+
+target_link_libraries(atlas_order_book_metrics_benchmark PRIVATE atlas_core)
