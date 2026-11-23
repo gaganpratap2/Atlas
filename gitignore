@@ -71,3 +71,8 @@ project_state/
 # Benchmark outputs
 benchmark/
 benchmarks/
+
+build/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
