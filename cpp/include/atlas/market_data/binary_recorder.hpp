@@ -26,6 +26,8 @@ namespace atlas::market_data{
         void write_trade(const Trade& trade);
         void write_quote(const Quote& quote);
         void write_order_book_update(const OrderBookUpdate& update);
+        void write_order_add(const market_data::OrderAdd& order);
+        void write_order_cancel(const OrderCancel& order);
 
         std::ofstream output_;
     };

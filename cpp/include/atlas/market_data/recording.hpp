@@ -7,10 +7,12 @@ constexpr std::uint32_t kRecordingMagic = 0x41544C53;
 constexpr std::uint16_t kRecordingVersion = 1;
 
     enum class RecordedEventType : std::uint8_t {
-        Trade = 1,
-        Quote = 2,
-        OrderBookUpdate = 3
-    };
+    Trade = 1,
+    Quote = 2,
+    OrderBookUpdate = 3,
+    OrderAdd = 4,
+    OrderCancel = 5
+};
 
     struct RecordingHeader {
         std::uint32_t magic;

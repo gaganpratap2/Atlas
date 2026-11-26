@@ -8,6 +8,7 @@ using InstrumentId = std::uint32_t;
 using Price = std::int64_t;
 using Quantity = std::uint64_t;
 using Timestamp = std::uint64_t;
+using OrderId = std::uint64_t;
 
 enum class Side : std::uint8_t {
     Buy , 
@@ -18,7 +19,9 @@ enum class Side : std::uint8_t {
 enum class EventType : std::uint8_t {
     Trade,
     Quote,
-    OrderBookUpdate
+    OrderBookUpdate,
+    OrderAdd,
+    OrderCancel
 };
 
 struct Trade {
@@ -42,6 +45,22 @@ struct OrderBookUpdate {
     Side side;
     Price price;
     Quantity quantity;
+    Timestamp timestamp;
+};
+
+struct OrderAdd {
+    InstrumentId instrument_id;
+    OrderId order_id;
+    Side side;
+    Price price;
+    Quantity quantity;
+    Timestamp timestamp;
+};
+
+
+struct OrderCancel {
+    InstrumentId instrument_id;
+    OrderId order_id;
     Timestamp timestamp;
 };
 

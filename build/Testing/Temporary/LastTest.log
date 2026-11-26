@@ -1,17 +1,17 @@
-Start testing: Nov 23 17:35 India Standard Time
+Start testing: Nov 26 15:24 India Standard Time
 ----------------------------------------------------------
 1/4 Testing: atlas_core_test
 1/4 Test: atlas_core_test
 Command: "D:/Atlas/build/cpp/Debug/atlas_core_test.exe"
 Directory: D:/Atlas/build/cpp
-"atlas_core_test" start time: Nov 23 17:35 India Standard Time
+"atlas_core_test" start time: Nov 26 15:24 India Standard Time
 Output:
 ----------------------------------------------------------
 <end of output>
-Test time =   0.02 sec
+Test time =   0.03 sec
 ----------------------------------------------------------
 Test Passed.
-"atlas_core_test" end time: Nov 23 17:35 India Standard Time
+"atlas_core_test" end time: Nov 26 15:24 India Standard Time
 "atlas_core_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -19,14 +19,34 @@ Test Passed.
 2/4 Test: atlas_market_data_test
 Command: "D:/Atlas/build/cpp/Debug/atlas_market_data_test.exe"
 Directory: D:/Atlas/build/cpp
-"atlas_market_data_test" start time: Nov 23 17:35 India Standard Time
+"atlas_market_data_test" start time: Nov 26 15:24 India Standard Time
 Output:
 ----------------------------------------------------------
+TEST 1: Trade validation
+TEST 2: Quote validation
+TEST 3: OrderBookUpdate validation
+TEST 4: Invalid Trade validation
+TEST 5: Crossed Quote validation
+TEST 6: MarketEvent variant
+TEST 7: CountingProcessor
+TEST 8: MarketDataFeed
+TEST 9: OrderBookUpdate decoder
+TEST 10: Invalid message length
+TEST 11: Invalid OrderBookUpdate side
+TEST 12: Binary recorder
+TEST 13: Recorder -> Replayer
+TEST 14: Invalid recording header
+TEST 15: Deterministic replay
+TEST 16: Replay twice
+TEST 17: OrderCancel decoder
+TEST 18: Invalid OrderCancel message length
+TEST 19: All five event types recording and replay
+All market-data tests passed
 <end of output>
-Test time =   0.02 sec
+Test time =   0.07 sec
 ----------------------------------------------------------
 Test Passed.
-"atlas_market_data_test" end time: Nov 23 17:35 India Standard Time
+"atlas_market_data_test" end time: Nov 26 15:24 India Standard Time
 "atlas_market_data_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -34,14 +54,14 @@ Test Passed.
 3/4 Test: atlas_order_book_test
 Command: "D:/Atlas/build/cpp/Debug/atlas_order_book_test.exe"
 Directory: D:/Atlas/build/cpp
-"atlas_order_book_test" start time: Nov 23 17:35 India Standard Time
+"atlas_order_book_test" start time: Nov 26 15:24 India Standard Time
 Output:
 ----------------------------------------------------------
 <end of output>
-Test time =   0.02 sec
+Test time =   0.03 sec
 ----------------------------------------------------------
 Test Passed.
-"atlas_order_book_test" end time: Nov 23 17:35 India Standard Time
+"atlas_order_book_test" end time: Nov 26 15:24 India Standard Time
 "atlas_order_book_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -49,16 +69,16 @@ Test Passed.
 4/4 Test: atlas_market_data_order_book_integration_test
 Command: "D:/Atlas/build/cpp/Debug/atlas_market_data_order_book_integration_test.exe"
 Directory: D:/Atlas/build/cpp
-"atlas_market_data_order_book_integration_test" start time: Nov 23 17:35 India Standard Time
+"atlas_market_data_order_book_integration_test" start time: Nov 26 15:24 India Standard Time
 Output:
 ----------------------------------------------------------
 Market data -> decoder -> validator -> order book integration test passed
 <end of output>
-Test time =   0.02 sec
+Test time =   0.03 sec
 ----------------------------------------------------------
 Test Passed.
-"atlas_market_data_order_book_integration_test" end time: Nov 23 17:35 India Standard Time
+"atlas_market_data_order_book_integration_test" end time: Nov 26 15:24 India Standard Time
 "atlas_market_data_order_book_integration_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Nov 23 17:35 India Standard Time
+End testing: Nov 26 15:24 India Standard Time

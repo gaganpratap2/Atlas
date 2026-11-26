@@ -9,7 +9,9 @@ namespace atlas::market_data {
 using MarketEvent = std::variant<
     Trade,
     Quote,
-    OrderBookUpdate
+    OrderBookUpdate,
+    OrderAdd,
+    OrderCancel
 >;
 
 }  

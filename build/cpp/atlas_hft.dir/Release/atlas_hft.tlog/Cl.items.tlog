@@ -1,7 +1,0 @@
-D:\Atlas\cpp\src\main.cpp;D:\Atlas\build\cpp\atlas_hft.dir\Release\main.obj
-D:\Atlas\cpp\src\market_data\validator.cpp;D:\Atlas\build\cpp\atlas_hft.dir\Release\validator.obj
-D:\Atlas\cpp\src\market_data\counting_processor.cpp;D:\Atlas\build\cpp\atlas_hft.dir\Release\counting_processor.obj
-D:\Atlas\cpp\src\market_data\test_feed.cpp;D:\Atlas\build\cpp\atlas_hft.dir\Release\test_feed.obj
-D:\Atlas\cpp\src\market_data\decoder.cpp;D:\Atlas\build\cpp\atlas_hft.dir\Release\decoder.obj
-D:\Atlas\cpp\src\market_data\binary_recorder.cpp;D:\Atlas\build\cpp\atlas_hft.dir\Release\binary_recorder.obj
-D:\Atlas\cpp\src\market_data\binary_replayer.cpp;D:\Atlas\build\cpp\atlas_hft.dir\Release\binary_replayer.obj

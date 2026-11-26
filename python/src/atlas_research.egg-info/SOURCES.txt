@@ -1,7 +1,0 @@
-pyproject.toml
-src/atlas_research.egg-info/PKG-INFO
-src/atlas_research.egg-info/SOURCES.txt
-src/atlas_research.egg-info/dependency_links.txt
-src/atlas_research.egg-info/requires.txt
-src/atlas_research.egg-info/top_level.txt
-tests/test_version.py

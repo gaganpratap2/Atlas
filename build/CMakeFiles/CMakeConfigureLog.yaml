@@ -77,6 +77,8 @@ events:
         - "D:\\AI\\GenAi\\.venv\\Scripts"
         - "c:\\Users\\Gagan Pratap Singh\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\Gagan Pratap Singh\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCl"
+        - "C:\\Users\\Gagan Pratap Singh\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\Gagan Pratap Singh\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "c:\\Users\\Gagan Pratap Singh\\.vscode\\extensions\\ms-python.debugpy-2026.6.0-win32-x64\\bundled\\scripts\\noConfigScripts"
         - "c:\\Users\\Gagan Pratap Singh\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "C:\\Users\\Gagan Pratap Singh\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\copilot-shim"
@@ -96,7 +98,7 @@ events:
       The output was:
       0
       MSBuild version 17.14.60+43b635718 for .NET Framework
-      Build started 16-11-2026 08:15:31.
+      Build started 25-11-2026 19:39:38.
       
       Project "D:\\Atlas\\build\\CMakeFiles\\4.4.4\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
       PrepareForBuild:
@@ -125,7 +127,7 @@ events:
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:02.03
+      Time Elapsed 00:00:01.01
       
       
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -181,6 +183,8 @@ events:
       - "D:/AI/GenAi/.venv/Scripts/"
       - "C:/Users/Gagan Pratap Singh/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
       - "C:/Users/Gagan Pratap Singh/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCl/"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Ollama/"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Users/Gagan Pratap Singh/.vscode/extensions/ms-python.debugpy-2026.6.0-win32-x64/bundled/scripts/noConfigScripts/"
       - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/"
     searched_directories:
@@ -230,6 +234,8 @@ events:
         - "D:\\AI\\GenAi\\.venv\\Scripts"
         - "c:\\Users\\Gagan Pratap Singh\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\Gagan Pratap Singh\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCl"
+        - "C:\\Users\\Gagan Pratap Singh\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\Gagan Pratap Singh\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "c:\\Users\\Gagan Pratap Singh\\.vscode\\extensions\\ms-python.debugpy-2026.6.0-win32-x64\\bundled\\scripts\\noConfigScripts"
         - "c:\\Users\\Gagan Pratap Singh\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "C:\\Users\\Gagan Pratap Singh\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\copilot-shim"
@@ -279,6 +285,8 @@ events:
       - "D:/AI/GenAi/.venv/Scripts/"
       - "C:/Users/Gagan Pratap Singh/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
       - "C:/Users/Gagan Pratap Singh/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCl/"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Ollama/"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Users/Gagan Pratap Singh/.vscode/extensions/ms-python.debugpy-2026.6.0-win32-x64/bundled/scripts/noConfigScripts/"
       - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/"
     searched_directories:
@@ -354,6 +362,12 @@ events:
       - "C:/Users/Gagan Pratap Singh/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCl/lld-link.com"
       - "C:/Users/Gagan Pratap Singh/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCl/lld-link.exe"
       - "C:/Users/Gagan Pratap Singh/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCl/lld-link"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Ollama/lld-link.com"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Ollama/lld-link.exe"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Ollama/lld-link"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Microsoft VS Code/bin/lld-link.com"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Microsoft VS Code/bin/lld-link.exe"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Microsoft VS Code/bin/lld-link"
       - "C:/Users/Gagan Pratap Singh/.vscode/extensions/ms-python.debugpy-2026.6.0-win32-x64/bundled/scripts/noConfigScripts/lld-link.com"
       - "C:/Users/Gagan Pratap Singh/.vscode/extensions/ms-python.debugpy-2026.6.0-win32-x64/bundled/scripts/noConfigScripts/lld-link.exe"
       - "C:/Users/Gagan Pratap Singh/.vscode/extensions/ms-python.debugpy-2026.6.0-win32-x64/bundled/scripts/noConfigScripts/lld-link"
@@ -405,6 +419,8 @@ events:
         - "D:\\AI\\GenAi\\.venv\\Scripts"
         - "c:\\Users\\Gagan Pratap Singh\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\Gagan Pratap Singh\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCl"
+        - "C:\\Users\\Gagan Pratap Singh\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\Gagan Pratap Singh\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "c:\\Users\\Gagan Pratap Singh\\.vscode\\extensions\\ms-python.debugpy-2026.6.0-win32-x64\\bundled\\scripts\\noConfigScripts"
         - "c:\\Users\\Gagan Pratap Singh\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "C:\\Users\\Gagan Pratap Singh\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\copilot-shim"
@@ -452,6 +468,8 @@ events:
       - "D:/AI/GenAi/.venv/Scripts/"
       - "C:/Users/Gagan Pratap Singh/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
       - "C:/Users/Gagan Pratap Singh/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCl/"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Ollama/"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Users/Gagan Pratap Singh/.vscode/extensions/ms-python.debugpy-2026.6.0-win32-x64/bundled/scripts/noConfigScripts/"
       - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/"
     searched_directories:
@@ -501,6 +519,8 @@ events:
         - "D:\\AI\\GenAi\\.venv\\Scripts"
         - "c:\\Users\\Gagan Pratap Singh\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\Gagan Pratap Singh\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCl"
+        - "C:\\Users\\Gagan Pratap Singh\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\Gagan Pratap Singh\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "c:\\Users\\Gagan Pratap Singh\\.vscode\\extensions\\ms-python.debugpy-2026.6.0-win32-x64\\bundled\\scripts\\noConfigScripts"
         - "c:\\Users\\Gagan Pratap Singh\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "C:\\Users\\Gagan Pratap Singh\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\copilot-shim"
@@ -548,6 +568,8 @@ events:
       - "D:/AI/GenAi/.venv/Scripts/"
       - "C:/Users/Gagan Pratap Singh/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
       - "C:/Users/Gagan Pratap Singh/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCl/"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Ollama/"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Users/Gagan Pratap Singh/.vscode/extensions/ms-python.debugpy-2026.6.0-win32-x64/bundled/scripts/noConfigScripts/"
       - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/"
     searched_directories:
@@ -623,6 +645,12 @@ events:
       - "C:/Users/Gagan Pratap Singh/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCl/mt.com"
       - "C:/Users/Gagan Pratap Singh/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCl/mt.exe"
       - "C:/Users/Gagan Pratap Singh/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCl/mt"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Ollama/mt.com"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Ollama/mt.exe"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Ollama/mt"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Microsoft VS Code/bin/mt.com"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Microsoft VS Code/bin/mt.exe"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Microsoft VS Code/bin/mt"
       - "C:/Users/Gagan Pratap Singh/.vscode/extensions/ms-python.debugpy-2026.6.0-win32-x64/bundled/scripts/noConfigScripts/mt.com"
       - "C:/Users/Gagan Pratap Singh/.vscode/extensions/ms-python.debugpy-2026.6.0-win32-x64/bundled/scripts/noConfigScripts/mt.exe"
       - "C:/Users/Gagan Pratap Singh/.vscode/extensions/ms-python.debugpy-2026.6.0-win32-x64/bundled/scripts/noConfigScripts/mt"
@@ -674,6 +702,8 @@ events:
         - "D:\\AI\\GenAi\\.venv\\Scripts"
         - "c:\\Users\\Gagan Pratap Singh\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\Gagan Pratap Singh\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCl"
+        - "C:\\Users\\Gagan Pratap Singh\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\Gagan Pratap Singh\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "c:\\Users\\Gagan Pratap Singh\\.vscode\\extensions\\ms-python.debugpy-2026.6.0-win32-x64\\bundled\\scripts\\noConfigScripts"
         - "c:\\Users\\Gagan Pratap Singh\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "C:\\Users\\Gagan Pratap Singh\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\copilot-shim"
@@ -721,6 +751,8 @@ events:
       - "D:/AI/GenAi/.venv/Scripts/"
       - "C:/Users/Gagan Pratap Singh/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
       - "C:/Users/Gagan Pratap Singh/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCl/"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Ollama/"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Users/Gagan Pratap Singh/.vscode/extensions/ms-python.debugpy-2026.6.0-win32-x64/bundled/scripts/noConfigScripts/"
       - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/"
     searched_directories:
@@ -770,6 +802,8 @@ events:
         - "D:\\AI\\GenAi\\.venv\\Scripts"
         - "c:\\Users\\Gagan Pratap Singh\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\Gagan Pratap Singh\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCl"
+        - "C:\\Users\\Gagan Pratap Singh\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\Gagan Pratap Singh\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "c:\\Users\\Gagan Pratap Singh\\.vscode\\extensions\\ms-python.debugpy-2026.6.0-win32-x64\\bundled\\scripts\\noConfigScripts"
         - "c:\\Users\\Gagan Pratap Singh\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "C:\\Users\\Gagan Pratap Singh\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\copilot-shim"
@@ -819,6 +853,8 @@ events:
       - "D:/AI/GenAi/.venv/Scripts/"
       - "C:/Users/Gagan Pratap Singh/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
       - "C:/Users/Gagan Pratap Singh/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCl/"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Ollama/"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Users/Gagan Pratap Singh/.vscode/extensions/ms-python.debugpy-2026.6.0-win32-x64/bundled/scripts/noConfigScripts/"
       - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/"
       - "C:/Program Files/bin/"
@@ -903,6 +939,12 @@ events:
       - "C:/Users/Gagan Pratap Singh/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCl/rc.com"
       - "C:/Users/Gagan Pratap Singh/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCl/rc.exe"
       - "C:/Users/Gagan Pratap Singh/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCl/rc"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Ollama/rc.com"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Ollama/rc.exe"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Ollama/rc"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Microsoft VS Code/bin/rc.com"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Microsoft VS Code/bin/rc.exe"
+      - "C:/Users/Gagan Pratap Singh/AppData/Local/Programs/Microsoft VS Code/bin/rc"
       - "C:/Users/Gagan Pratap Singh/.vscode/extensions/ms-python.debugpy-2026.6.0-win32-x64/bundled/scripts/noConfigScripts/rc.com"
       - "C:/Users/Gagan Pratap Singh/.vscode/extensions/ms-python.debugpy-2026.6.0-win32-x64/bundled/scripts/noConfigScripts/rc.exe"
       - "C:/Users/Gagan Pratap Singh/.vscode/extensions/ms-python.debugpy-2026.6.0-win32-x64/bundled/scripts/noConfigScripts/rc"
@@ -990,6 +1032,8 @@ events:
         - "D:\\AI\\GenAi\\.venv\\Scripts"
         - "c:\\Users\\Gagan Pratap Singh\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\Gagan Pratap Singh\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCl"
+        - "C:\\Users\\Gagan Pratap Singh\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\Gagan Pratap Singh\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "c:\\Users\\Gagan Pratap Singh\\.vscode\\extensions\\ms-python.debugpy-2026.6.0-win32-x64\\bundled\\scripts\\noConfigScripts"
         - "c:\\Users\\Gagan Pratap Singh\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "C:\\Users\\Gagan Pratap Singh\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\copilot-shim"
@@ -1008,8 +1052,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "D:/Atlas/build/CMakeFiles/CMakeScratch/TryCompile-vhntl0"
-      binary: "D:/Atlas/build/CMakeFiles/CMakeScratch/TryCompile-vhntl0"
+      source: "D:/Atlas/build/CMakeFiles/CMakeScratch/TryCompile-tyu4tt"
+      binary: "D:/Atlas/build/CMakeFiles/CMakeScratch/TryCompile-tyu4tt"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -1020,39 +1064,39 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: false
       stdout: |
-        Change Dir: 'D:/Atlas/build/CMakeFiles/CMakeScratch/TryCompile-vhntl0'
+        Change Dir: 'D:/Atlas/build/CMakeFiles/CMakeScratch/TryCompile-tyu4tt'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_00437.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_fe790.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.14.60+43b635718 for .NET Framework
-        Build started 16-11-2026 08:15:34.
+        Build started 25-11-2026 19:39:40.
         
-        Project "D:\\Atlas\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vhntl0\\cmTC_00437.vcxproj" on node 1 (default targets).
+        Project "D:\\Atlas\\build\\CMakeFiles\\CMakeScratch\\TryCompile-tyu4tt\\cmTC_fe790.vcxproj" on node 1 (default targets).
         PrepareForBuild:
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "D:\\Atlas\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vhntl0\\Debug\\".
-          Creating directory "cmTC_00437.dir\\Debug\\cmTC_00437.tlog\\".
+          Creating directory "D:\\Atlas\\build\\CMakeFiles\\CMakeScratch\\TryCompile-tyu4tt\\Debug\\".
+          Creating directory "cmTC_fe790.dir\\Debug\\cmTC_fe790.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_00437.dir\\Debug\\cmTC_00437.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_00437.dir\\Debug\\cmTC_00437.tlog\\unsuccessfulbuild".
+          Creating "cmTC_fe790.dir\\Debug\\cmTC_fe790.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_fe790.dir\\Debug\\cmTC_fe790.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /Fo"cmTC_00437.dir\\Debug\\\\" /Fd"cmTC_00437.dir\\Debug\\vc143.pdb" /external:W1 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.4\\Modules\\CMakeCXXCompilerABI.cpp"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /Fo"cmTC_fe790.dir\\Debug\\\\" /Fd"cmTC_fe790.dir\\Debug\\vc143.pdb" /external:W1 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.4\\Modules\\CMakeCXXCompilerABI.cpp"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35229 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /Fo"cmTC_00437.dir\\Debug\\\\" /Fd"cmTC_00437.dir\\Debug\\vc143.pdb" /external:W1 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.4\\Modules\\CMakeCXXCompilerABI.cpp"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /Fo"cmTC_fe790.dir\\Debug\\\\" /Fd"cmTC_fe790.dir\\Debug\\vc143.pdb" /external:W1 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.4\\Modules\\CMakeCXXCompilerABI.cpp"
           CMakeCXXCompilerABI.cpp
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"D:\\Atlas\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vhntl0\\Debug\\cmTC_00437.exe" /INCREMENTAL /ILK:"cmTC_00437.dir\\Debug\\cmTC_00437.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Atlas/build/CMakeFiles/CMakeScratch/TryCompile-vhntl0/Debug/cmTC_00437.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"D:/Atlas/build/CMakeFiles/CMakeScratch/TryCompile-vhntl0/Debug/cmTC_00437.lib" /MACHINE:X64  /machine:x64 cmTC_00437.dir\\Debug\\CMakeCXXCompilerABI.obj
-          cmTC_00437.vcxproj -> D:\\Atlas\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vhntl0\\Debug\\cmTC_00437.exe
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"D:\\Atlas\\build\\CMakeFiles\\CMakeScratch\\TryCompile-tyu4tt\\Debug\\cmTC_fe790.exe" /INCREMENTAL /ILK:"cmTC_fe790.dir\\Debug\\cmTC_fe790.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Atlas/build/CMakeFiles/CMakeScratch/TryCompile-tyu4tt/Debug/cmTC_fe790.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"D:/Atlas/build/CMakeFiles/CMakeScratch/TryCompile-tyu4tt/Debug/cmTC_fe790.lib" /MACHINE:X64  /machine:x64 cmTC_fe790.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_fe790.vcxproj -> D:\\Atlas\\build\\CMakeFiles\\CMakeScratch\\TryCompile-tyu4tt\\Debug\\cmTC_fe790.exe
         FinalizeBuildStatus:
-          Deleting file "cmTC_00437.dir\\Debug\\cmTC_00437.tlog\\unsuccessfulbuild".
-          Touching "cmTC_00437.dir\\Debug\\cmTC_00437.tlog\\cmTC_00437.lastbuildstate".
-        Done Building Project "D:\\Atlas\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vhntl0\\cmTC_00437.vcxproj" (default targets).
+          Deleting file "cmTC_fe790.dir\\Debug\\cmTC_fe790.tlog\\unsuccessfulbuild".
+          Touching "cmTC_fe790.dir\\Debug\\cmTC_fe790.tlog\\cmTC_fe790.lastbuildstate".
+        Done Building Project "D:\\Atlas\\build\\CMakeFiles\\CMakeScratch\\TryCompile-tyu4tt\\cmTC_fe790.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:01.52
+        Time Elapsed 00:00:00.82
         
       exitCode: 0
   -
@@ -1065,7 +1109,7 @@ events:
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
-        link line: [  C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"D:\\Atlas\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vhntl0\\Debug\\cmTC_00437.exe" /INCREMENTAL /ILK:"cmTC_00437.dir\\Debug\\cmTC_00437.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Atlas/build/CMakeFiles/CMakeScratch/TryCompile-vhntl0/Debug/cmTC_00437.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"D:/Atlas/build/CMakeFiles/CMakeScratch/TryCompile-vhntl0/Debug/cmTC_00437.lib" /MACHINE:X64  /machine:x64 cmTC_00437.dir\\Debug\\CMakeCXXCompilerABI.obj] ==> linker [C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe]
+        link line: [  C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"D:\\Atlas\\build\\CMakeFiles\\CMakeScratch\\TryCompile-tyu4tt\\Debug\\cmTC_fe790.exe" /INCREMENTAL /ILK:"cmTC_fe790.dir\\Debug\\cmTC_fe790.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Atlas/build/CMakeFiles/CMakeScratch/TryCompile-tyu4tt/Debug/cmTC_fe790.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"D:/Atlas/build/CMakeFiles/CMakeScratch/TryCompile-tyu4tt/Debug/cmTC_fe790.lib" /MACHINE:X64  /machine:x64 cmTC_fe790.dir\\Debug\\CMakeCXXCompilerABI.obj] ==> linker [C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe]
         linker tool for 'CXX': C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/HostX64/x64/link.exe 
         implicit libs: []
         implicit objs: []
