@@ -14,4 +14,9 @@ using MarketEvent = std::variant<
     OrderCancel
 >;
 
-}  
+struct SequencedMarketEvent {
+    SequenceNumber sequence_number;
+    MarketEvent event;
+};
+
+}

@@ -24,6 +24,8 @@ add_library(atlas_core STATIC
     # Order Book
     src/order_book/order_book.cpp
     src/order_book/order_book_processor.cpp
+
+    src/market_data/sequence_tracker.cpp
 )
 
 target_include_directories(atlas_core

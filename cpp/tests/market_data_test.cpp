@@ -16,6 +16,9 @@
 #include "atlas/market_data/test_feed.hpp"
 #include "atlas/market_data/types.hpp"
 #include "atlas/market_data/validator.hpp"
+#include "atlas/market_data/sequence_tracker.hpp"
+// #include "atlas/market_data/sequence_tracker.cpp"
+
 
 int main() {
 
@@ -1086,6 +1089,338 @@ std::cerr << "TEST 18: Invalid OrderCancel message length\n";
 
     std::cerr << "TEST 19: All five event types recording and replay\n";
 }
+
+
+
+SequenceTracker tracker;
+
+const auto result1 = tracker.observe(100);
+
+assert(result1.status == SequenceStatus::First);
+assert(result1.received == 100);
+assert(tracker.next_expected() == 101);
+
+const auto result2 = tracker.observe(101);
+
+assert(result2.status == SequenceStatus::InOrder);
+assert(result2.expected == 101);
+assert(result2.received == 101);
+assert(tracker.next_expected() == 102);
+
+const auto result3 = tracker.observe(105);
+
+assert(result3.status == SequenceStatus::Gap);
+assert(result3.expected == 102);
+assert(result3.received == 105);
+assert(tracker.next_expected() == 106);
+
+const auto result4 = tracker.observe(105);
+
+assert(result4.status == SequenceStatus::Duplicate);
+assert(result4.expected == 106);
+assert(result4.received == 105);
+assert(tracker.next_expected() == 106);
+
+
+const auto result5 = tracker.observe(100);
+
+assert(result5.status == SequenceStatus::OutOfOrder);
+assert(result5.expected == 106);
+assert(result5.received == 100);
+assert(tracker.next_expected() == 106);
+
+
+tracker.reset();
+
+assert(!tracker.initialized());
+assert(tracker.next_expected() == 0);
+
+const auto result6 = tracker.observe(500);
+
+assert(result6.status == SequenceStatus::First);
+assert(tracker.next_expected() == 501);
+
+
+
+
+    // =========================================================
+    // 20. Test Sequenced Trade Decoder
+    // =========================================================
+
+    {
+        // Normal 31-byte Trade message.
+        std::vector<std::uint8_t> trade_bytes{
+            31, 0,                  // Message length
+            1,                      // Trade message type
+
+            1, 0, 0, 0,             // instrument_id = 1
+
+            0x8d, 0x27, 0, 0,
+            0, 0, 0, 0,             // price = 10125
+
+            100, 0, 0, 0,
+            0, 0, 0, 0,             // quantity = 100
+
+            0x40, 0x42, 0x0f, 0,
+            0, 0, 0, 0              // timestamp = 1000000
+        };
+
+        // Prepend 8-byte little-endian sequence number.
+        const std::uint64_t sequence_number = 12345;
+
+        std::vector<std::uint8_t> sequenced_bytes;
+
+        for (int i = 0; i < 8; ++i) {
+            sequenced_bytes.push_back(
+                static_cast<std::uint8_t>(
+                    (sequence_number >> (i * 8)) & 0xFF
+                )
+            );
+        }
+
+        sequenced_bytes.insert(
+            sequenced_bytes.end(),
+            trade_bytes.begin(),
+            trade_bytes.end()
+        );
+
+        const auto decoded =
+            decoder.decode_sequenced(sequenced_bytes);
+
+        assert(decoded.sequence_number == 12345);
+
+        const auto* decoded_trade =
+            std::get_if<Trade>(&decoded.event);
+
+        assert(decoded_trade != nullptr);
+
+        assert(decoded_trade->instrument_id == 1);
+        assert(decoded_trade->price == 10125);
+        assert(decoded_trade->quantity == 100);
+        assert(decoded_trade->timestamp == 1'000'000);
+
+        std::cerr
+            << "TEST 20: Sequenced Trade decoder\n";
+    }
+
+
+    // =========================================================
+    // 21. Test Truncated Sequence Wrapper
+    // =========================================================
+
+    {
+        std::vector<std::uint8_t> bytes(7);
+
+        bool threw = false;
+
+        try {
+
+            decoder.decode_sequenced(bytes);
+
+        } catch (const std::runtime_error&) {
+
+            threw = true;
+        }
+
+        assert(threw);
+
+        std::cerr
+            << "TEST 21: Truncated sequence wrapper\n";
+    }
+
+
+    // =========================================================
+    // 22. Test SequenceTracker + Decoder Integration
+    // =========================================================
+
+    {
+        SequenceTracker tracker;
+
+        Decoder sequenced_decoder;
+
+        // Helper: prepend an 8-byte little-endian sequence.
+        auto add_sequence = [](
+            std::uint64_t sequence,
+            std::vector<std::uint8_t> payload
+        ) {
+
+            std::vector<std::uint8_t> result;
+
+            for (int i = 0; i < 8; ++i) {
+
+                result.push_back(
+                    static_cast<std::uint8_t>(
+                        (sequence >> (i * 8)) & 0xFF
+                    )
+                );
+            }
+
+            result.insert(
+                result.end(),
+                payload.begin(),
+                payload.end()
+            );
+
+            return result;
+        };
+
+
+        // -----------------------------------------------------
+        // First message: Trade, sequence 1001
+        // -----------------------------------------------------
+
+        std::vector<std::uint8_t> trade_payload{
+            31, 0,
+            1,
+
+            1, 0, 0, 0,
+
+            0x10, 0x27, 0, 0,
+            0, 0, 0, 0,
+
+            10, 0, 0, 0,
+            0, 0, 0, 0,
+
+            100, 0, 0, 0,
+            0, 0, 0, 0
+        };
+
+        auto first_bytes =
+            add_sequence(1001, trade_payload);
+
+        const auto first =
+            sequenced_decoder.decode_sequenced(first_bytes);
+
+        assert(first.sequence_number == 1001);
+
+        const auto* first_trade =
+            std::get_if<Trade>(&first.event);
+
+        assert(first_trade != nullptr);
+
+        assert(first_trade->instrument_id == 1);
+        assert(first_trade->price == 10000);
+        assert(first_trade->quantity == 10);
+        assert(first_trade->timestamp == 100);
+
+        const auto r1 =
+            tracker.observe(first.sequence_number);
+
+        assert(r1.status == SequenceStatus::First);
+
+
+        // -----------------------------------------------------
+        // Second message: Quote, sequence 1002
+        // -----------------------------------------------------
+
+        std::vector<std::uint8_t> quote_payload{
+            47, 0,
+            2,
+
+            1, 0, 0, 0,
+
+            0x0f, 0x27, 0, 0,
+            0, 0, 0, 0,             // bid_price = 9999
+
+            20, 0, 0, 0,
+            0, 0, 0, 0,             // bid_quantity = 20
+
+            0x11, 0x27, 0, 0,
+            0, 0, 0, 0,             // ask_price = 10001
+
+            30, 0, 0, 0,
+            0, 0, 0, 0,             // ask_quantity = 30
+
+            101, 0, 0, 0,
+            0, 0, 0, 0              // timestamp = 101
+        };
+
+        auto second_bytes =
+            add_sequence(1002, quote_payload);
+
+        const auto second =
+            sequenced_decoder.decode_sequenced(second_bytes);
+
+        assert(second.sequence_number == 1002);
+
+        const auto* second_quote =
+            std::get_if<Quote>(&second.event);
+
+        assert(second_quote != nullptr);
+
+        assert(second_quote->instrument_id == 1);
+        assert(second_quote->bid_price == 9999);
+        assert(second_quote->bid_quantity == 20);
+        assert(second_quote->ask_price == 10001);
+        assert(second_quote->ask_quantity == 30);
+        assert(second_quote->timestamp == 101);
+
+        const auto r2 =
+            tracker.observe(second.sequence_number);
+
+        assert(r2.status == SequenceStatus::InOrder);
+
+
+        // -----------------------------------------------------
+        // Third message: OrderAdd, sequence 1004
+        // -----------------------------------------------------
+
+        std::vector<std::uint8_t> order_add_payload{
+            40, 0,
+            4,
+
+            1, 0, 0, 0,             // instrument_id = 1
+
+            42, 0, 0, 0,
+            0, 0, 0, 0,             // order_id = 42
+
+            1,                      // Sell
+
+            0x12, 0x27, 0, 0,
+            0, 0, 0, 0,             // price = 10002
+
+            25, 0, 0, 0,
+            0, 0, 0, 0,             // quantity = 25
+
+            103, 0, 0, 0,
+            0, 0, 0, 0              // timestamp = 103
+        };
+
+        auto third_bytes =
+            add_sequence(1004, order_add_payload);
+
+        const auto third =
+            sequenced_decoder.decode_sequenced(third_bytes);
+
+        assert(third.sequence_number == 1004);
+
+        const auto* third_add =
+            std::get_if<OrderAdd>(&third.event);
+
+        assert(third_add != nullptr);
+
+        assert(third_add->instrument_id == 1);
+        assert(third_add->order_id == 42);
+        assert(third_add->side == Side::Sell);
+        assert(third_add->price == 10002);
+        assert(third_add->quantity == 25);
+        assert(third_add->timestamp == 103);
+
+        const auto r3 =
+            tracker.observe(third.sequence_number);
+
+        assert(r3.status == SequenceStatus::Gap);
+        assert(r3.expected == 1003);
+        assert(r3.received == 1004);
+
+        // The event must remain intact after sequence tracking.
+        assert(std::holds_alternative<OrderAdd>(third.event));
+
+        std::cerr
+            << "TEST 22: SequenceTracker + Decoder integration\n";
+    }
+
+
 
 
 

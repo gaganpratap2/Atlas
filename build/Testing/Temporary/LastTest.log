@@ -1,17 +1,17 @@
-Start testing: Nov 26 15:24 India Standard Time
+Start testing: Nov 28 13:21 India Standard Time
 ----------------------------------------------------------
 1/4 Testing: atlas_core_test
 1/4 Test: atlas_core_test
 Command: "D:/Atlas/build/cpp/Debug/atlas_core_test.exe"
 Directory: D:/Atlas/build/cpp
-"atlas_core_test" start time: Nov 26 15:24 India Standard Time
+"atlas_core_test" start time: Nov 28 13:21 India Standard Time
 Output:
 ----------------------------------------------------------
 <end of output>
-Test time =   0.03 sec
+Test time =   0.05 sec
 ----------------------------------------------------------
 Test Passed.
-"atlas_core_test" end time: Nov 26 15:24 India Standard Time
+"atlas_core_test" end time: Nov 28 13:21 India Standard Time
 "atlas_core_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -19,7 +19,7 @@ Test Passed.
 2/4 Test: atlas_market_data_test
 Command: "D:/Atlas/build/cpp/Debug/atlas_market_data_test.exe"
 Directory: D:/Atlas/build/cpp
-"atlas_market_data_test" start time: Nov 26 15:24 India Standard Time
+"atlas_market_data_test" start time: Nov 28 13:21 India Standard Time
 Output:
 ----------------------------------------------------------
 TEST 1: Trade validation
@@ -41,12 +41,15 @@ TEST 16: Replay twice
 TEST 17: OrderCancel decoder
 TEST 18: Invalid OrderCancel message length
 TEST 19: All five event types recording and replay
+TEST 20: Sequenced Trade decoder
+TEST 21: Truncated sequence wrapper
+TEST 22: SequenceTracker + Decoder integration
 All market-data tests passed
 <end of output>
-Test time =   0.07 sec
+Test time =   0.06 sec
 ----------------------------------------------------------
 Test Passed.
-"atlas_market_data_test" end time: Nov 26 15:24 India Standard Time
+"atlas_market_data_test" end time: Nov 28 13:21 India Standard Time
 "atlas_market_data_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -54,14 +57,14 @@ Test Passed.
 3/4 Test: atlas_order_book_test
 Command: "D:/Atlas/build/cpp/Debug/atlas_order_book_test.exe"
 Directory: D:/Atlas/build/cpp
-"atlas_order_book_test" start time: Nov 26 15:24 India Standard Time
+"atlas_order_book_test" start time: Nov 28 13:21 India Standard Time
 Output:
 ----------------------------------------------------------
 <end of output>
-Test time =   0.03 sec
+Test time =   0.05 sec
 ----------------------------------------------------------
 Test Passed.
-"atlas_order_book_test" end time: Nov 26 15:24 India Standard Time
+"atlas_order_book_test" end time: Nov 28 13:21 India Standard Time
 "atlas_order_book_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -69,16 +72,16 @@ Test Passed.
 4/4 Test: atlas_market_data_order_book_integration_test
 Command: "D:/Atlas/build/cpp/Debug/atlas_market_data_order_book_integration_test.exe"
 Directory: D:/Atlas/build/cpp
-"atlas_market_data_order_book_integration_test" start time: Nov 26 15:24 India Standard Time
+"atlas_market_data_order_book_integration_test" start time: Nov 28 13:21 India Standard Time
 Output:
 ----------------------------------------------------------
 Market data -> decoder -> validator -> order book integration test passed
 <end of output>
-Test time =   0.03 sec
+Test time =   0.07 sec
 ----------------------------------------------------------
 Test Passed.
-"atlas_market_data_order_book_integration_test" end time: Nov 26 15:24 India Standard Time
+"atlas_market_data_order_book_integration_test" end time: Nov 28 13:21 India Standard Time
 "atlas_market_data_order_book_integration_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Nov 26 15:24 India Standard Time
+End testing: Nov 28 13:21 India Standard Time

@@ -8,9 +8,10 @@
 
 namespace atlas::market_data {
 
-class Decoder {
+class Decoder { 
 public:
     MarketEvent decode(std::span<const std::uint8_t> bytes) const;
+    SequencedMarketEvent decode_sequenced( std::span<const std::uint8_t> bytes) const;
 };
 
 }  // namespace atlas::market_data

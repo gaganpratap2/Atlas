@@ -6,3 +6,4 @@ D:\Atlas\cpp\src\market_data\binary_recorder.cpp;D:\Atlas\build\cpp\atlas_core.d
 D:\Atlas\cpp\src\market_data\binary_replayer.cpp;D:\Atlas\build\cpp\atlas_core.dir\Debug\binary_replayer.obj
 D:\Atlas\cpp\src\order_book\order_book.cpp;D:\Atlas\build\cpp\atlas_core.dir\Debug\order_book.obj
 D:\Atlas\cpp\src\order_book\order_book_processor.cpp;D:\Atlas\build\cpp\atlas_core.dir\Debug\order_book_processor.obj
+D:\Atlas\cpp\src\market_data\sequence_tracker.cpp;D:\Atlas\build\cpp\atlas_core.dir\Debug\sequence_tracker.obj

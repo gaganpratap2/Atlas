@@ -25,6 +25,9 @@
     <ClCompile Include="D:\Atlas\cpp\src\order_book\order_book_processor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\Atlas\cpp\src\market_data\sequence_tracker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="D:\Atlas\cpp\CMakeLists.txt" />

@@ -9,6 +9,7 @@ using Price = std::int64_t;
 using Quantity = std::uint64_t;
 using Timestamp = std::uint64_t;
 using OrderId = std::uint64_t;
+using SequenceNumber = std::uint64_t;
 
 enum class Side : std::uint8_t {
     Buy , 

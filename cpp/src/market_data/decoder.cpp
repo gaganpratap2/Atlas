@@ -176,4 +176,27 @@ MarketEvent Decoder::decode(
     }
 }
 
+
+SequencedMarketEvent Decoder::decode_sequenced(
+    std::span<const std::uint8_t> bytes) const {
+
+    constexpr std::size_t sequence_size = sizeof(SequenceNumber);
+
+    if (bytes.size() < sequence_size) {
+        throw std::runtime_error(
+            "truncated sequenced market-data message");
+    }
+
+    const auto sequence_number =
+        read_le<SequenceNumber>(bytes, 0);
+
+    const auto event =
+        decode(bytes.subspan(sequence_size));
+
+    return SequencedMarketEvent{
+        .sequence_number = sequence_number,
+        .event = event
+    };
+}
+
 }  // namespace atlas::market_data
