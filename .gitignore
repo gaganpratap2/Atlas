@@ -1,0 +1,78 @@
+# Python
+python/.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# C++
+build/
+cmake-build-*/
+compile_commands.json
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Data
+data/
+*.parquet
+*.feather
+*.csv
+
+# Logs
+logs/
+*.log
+
+# Generated artifacts
+dist/
+coverage/
+htmlcov/
+
+# Secrets
+*.pem
+*.key
+secrets/
+
+
+BENCHMARKS.md
+PROJECT_STATE.md
+
+
+# Build directories
+build/
+cmake-build-*/
+
+# Compiled files
+*.obj
+*.o
+*.exe
+*.dll
+*.lib
+*.pdb
+*.ilk
+
+# Visual Studio
+.vs/
+
+# Project state
+project_state/
+
+# Benchmark outputs
+benchmark/
+benchmarks/
+
+build/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
