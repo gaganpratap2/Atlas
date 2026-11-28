@@ -1,59 +1,58 @@
+
 #include "atlas/market_data/sequence_tracker.hpp"
 
-namespace atlas::market_data{
+namespace atlas::market_data {
 
-    SequenceResult SequenceTracker::observe(
-        SequenceNumber sequence ) noexcept {
-            if (!initialized_){
-                initialized_ = true;
-                next_expected_ = sequence + 1;
+SequenceResult SequenceTracker::observe(
+    SequenceNumber sequence) noexcept {
 
-            return {
-                .status = SequenceStatus::First,
-                .expected = sequence,
-                .received = sequence
-            };
-        }
+    if (!initialized_) {
+        initialized_ = true;
+        last_received_ = sequence;
+        next_expected_ = sequence + 1;
 
-        const SequenceNumber expected = next_expected_;
-
-        if (sequence == expected) {
-            next_expected_ = sequence + 1;
-
-            return {
-                .status = SequenceStatus::InOrder,
-                .expected = expected,
-                .received = sequence
-            }; 
-        }
-
-        if(sequence > expected){
-            next_expected_ = sequence + 1;
-            return {
-                .status = SequenceStatus::Gap,
-                .expected = expected,
-                .received = sequence
-        }   ;
-        }
-
-        if (sequence + 1 == expected) {
         return {
-            .status = SequenceStatus::Duplicate,
-            .expected = expected,
-            .received = sequence
+            SequenceStatus::First,
+            sequence,
+            sequence
         };
     }
 
+    if (sequence == next_expected_) {
+        const SequenceNumber expected = next_expected_;
+
+        last_received_ = sequence;
+        next_expected_ = sequence + 1;
+
+        return {
+            SequenceStatus::InOrder,
+            expected,
+            sequence
+        };
+    }
+
+    if (sequence > next_expected_) {
+        // Gap detected. Preserve the missing sequence.
+        return {
+            SequenceStatus::Gap,
+            next_expected_,
+            sequence
+        };
+    }
+
+    // Any sequence below next_expected_ is a duplicate
+    // under the current Day 9 Step 6 contract.
     return {
-        .status = SequenceStatus::OutOfOrder,
-        .expected = expected,
-        .received = sequence
+        SequenceStatus::Duplicate,
+        next_expected_,
+        sequence
     };
 }
 
 void SequenceTracker::reset() noexcept {
     initialized_ = false;
     next_expected_ = 0;
+    last_received_ = 0;
 }
 
 bool SequenceTracker::initialized() const noexcept {
@@ -63,4 +62,5 @@ bool SequenceTracker::initialized() const noexcept {
 SequenceNumber SequenceTracker::next_expected() const noexcept {
     return next_expected_;
 }
-}
+
+} // namespace atlas::market_data

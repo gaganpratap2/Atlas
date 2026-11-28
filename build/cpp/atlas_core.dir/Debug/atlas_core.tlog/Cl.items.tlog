@@ -7,3 +7,7 @@ D:\Atlas\cpp\src\market_data\binary_replayer.cpp;D:\Atlas\build\cpp\atlas_core.d
 D:\Atlas\cpp\src\order_book\order_book.cpp;D:\Atlas\build\cpp\atlas_core.dir\Debug\order_book.obj
 D:\Atlas\cpp\src\order_book\order_book_processor.cpp;D:\Atlas\build\cpp\atlas_core.dir\Debug\order_book_processor.obj
 D:\Atlas\cpp\src\market_data\sequence_tracker.cpp;D:\Atlas\build\cpp\atlas_core.dir\Debug\sequence_tracker.obj
+D:\Atlas\cpp\src\market_data\sequence_policy.cpp;D:\Atlas\build\cpp\atlas_core.dir\Debug\sequence_policy.obj
+D:\Atlas\cpp\src\market_data\sequenced_event_processor.cpp;D:\Atlas\build\cpp\atlas_core.dir\Debug\sequenced_event_processor.obj
+D:\Atlas\cpp\src\market_data\feed_health.cpp;D:\Atlas\build\cpp\atlas_core.dir\Debug\feed_health.obj
+D:\Atlas\cpp\src\market_data\feed_recovery.cpp;D:\Atlas\build\cpp\atlas_core.dir\Debug\feed_recovery.obj

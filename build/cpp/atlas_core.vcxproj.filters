@@ -28,6 +28,18 @@
     <ClCompile Include="D:\Atlas\cpp\src\market_data\sequence_tracker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\Atlas\cpp\src\market_data\sequence_policy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Atlas\cpp\src\market_data\sequenced_event_processor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Atlas\cpp\src\market_data\feed_health.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Atlas\cpp\src\market_data\feed_recovery.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="D:\Atlas\cpp\CMakeLists.txt" />

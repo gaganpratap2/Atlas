@@ -309,6 +309,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="D:\Atlas\cpp\src\order_book\order_book.cpp" />
     <ClCompile Include="D:\Atlas\cpp\src\order_book\order_book_processor.cpp" />
     <ClCompile Include="D:\Atlas\cpp\src\market_data\sequence_tracker.cpp" />
+    <ClCompile Include="D:\Atlas\cpp\src\market_data\sequence_policy.cpp" />
+    <ClCompile Include="D:\Atlas\cpp\src\market_data\sequenced_event_processor.cpp" />
+    <ClCompile Include="D:\Atlas\cpp\src\market_data\feed_health.cpp" />
+    <ClCompile Include="D:\Atlas\cpp\src\market_data\feed_recovery.cpp" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

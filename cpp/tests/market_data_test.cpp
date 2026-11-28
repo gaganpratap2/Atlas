@@ -17,7 +17,13 @@
 #include "atlas/market_data/types.hpp"
 #include "atlas/market_data/validator.hpp"
 #include "atlas/market_data/sequence_tracker.hpp"
-// #include "atlas/market_data/sequence_tracker.cpp"
+#include "atlas/market_data/sequence_policy.hpp"
+#include "atlas/market_data/sequenced_event_processor.hpp"
+#include "atlas/order_book/order_book_processor.hpp"
+#include "atlas/market_data/feed_health.hpp"
+
+#include "atlas/market_data/feed_recovery.hpp"
+
 
 
 int main() {
@@ -1092,53 +1098,65 @@ std::cerr << "TEST 18: Invalid OrderCancel message length\n";
 
 
 
-SequenceTracker tracker;
-
-const auto result1 = tracker.observe(100);
-
-assert(result1.status == SequenceStatus::First);
-assert(result1.received == 100);
-assert(tracker.next_expected() == 101);
-
-const auto result2 = tracker.observe(101);
-
-assert(result2.status == SequenceStatus::InOrder);
-assert(result2.expected == 101);
-assert(result2.received == 101);
-assert(tracker.next_expected() == 102);
-
-const auto result3 = tracker.observe(105);
-
-assert(result3.status == SequenceStatus::Gap);
-assert(result3.expected == 102);
-assert(result3.received == 105);
-assert(tracker.next_expected() == 106);
-
-const auto result4 = tracker.observe(105);
-
-assert(result4.status == SequenceStatus::Duplicate);
-assert(result4.expected == 106);
-assert(result4.received == 105);
-assert(tracker.next_expected() == 106);
 
 
-const auto result5 = tracker.observe(100);
+{
+    SequenceTracker tracker;
 
-assert(result5.status == SequenceStatus::OutOfOrder);
-assert(result5.expected == 106);
-assert(result5.received == 100);
-assert(tracker.next_expected() == 106);
+    auto result = tracker.observe(100);
+    assert(result.status == SequenceStatus::First);
+    assert(tracker.next_expected() == 101);
+
+    result = tracker.observe(101);
+    assert(result.status == SequenceStatus::InOrder);
+    assert(tracker.next_expected() == 102);
+
+    // Gap: tracker must not advance.
+    result = tracker.observe(105);
+    assert(result.status == SequenceStatus::Gap);
+    assert(result.expected == 102);
+    assert(result.received == 105);
+    assert(tracker.next_expected() == 102);
+
+    // Repeated gap.
+    result = tracker.observe(105);
+    assert(result.status == SequenceStatus::Gap);
+
+    // Older sequence is duplicate.
+    result = tracker.observe(100);
+    assert(result.status == SequenceStatus::Duplicate);
+
+    // Recover missing sequences in order.
+    result = tracker.observe(102);
+    assert(result.status == SequenceStatus::InOrder);
+
+    result = tracker.observe(103);
+    assert(result.status == SequenceStatus::InOrder);
+
+    result = tracker.observe(104);
+    assert(result.status == SequenceStatus::InOrder);
+
+    // Resend previously rejected sequence.
+    result = tracker.observe(105);
+    assert(result.status == SequenceStatus::InOrder);
+
+    assert(tracker.next_expected() == 106);
+
+    tracker.reset();
+
+    assert(!tracker.initialized());
+    assert(tracker.next_expected() == 0);
+
+    result = tracker.observe(500);
+    assert(result.status == SequenceStatus::First);
+    assert(tracker.next_expected() == 501);
+
+    std::cerr << "TEST 19A: SequenceTracker PASSED\n";
+}
 
 
-tracker.reset();
 
-assert(!tracker.initialized());
-assert(tracker.next_expected() == 0);
 
-const auto result6 = tracker.observe(500);
-
-assert(result6.status == SequenceStatus::First);
-assert(tracker.next_expected() == 501);
 
 
 
@@ -1420,6 +1438,390 @@ assert(tracker.next_expected() == 501);
             << "TEST 22: SequenceTracker + Decoder integration\n";
     }
 
+
+
+ 
+{
+    SequencePolicy policy;
+
+    auto decision = policy.evaluate(100);
+    assert(decision.action == SequenceAction::Accept);
+    assert(decision.result.status == SequenceStatus::First);
+
+    decision = policy.evaluate(101);
+    assert(decision.action == SequenceAction::Accept);
+    assert(decision.result.status == SequenceStatus::InOrder);
+
+    decision = policy.evaluate(101);
+    assert(decision.action == SequenceAction::IgnoreDuplicate);
+    assert(decision.result.status == SequenceStatus::Duplicate);
+
+    // Gap.
+    decision = policy.evaluate(105);
+    assert(decision.action == SequenceAction::GapDetected);
+    assert(decision.result.status == SequenceStatus::Gap);
+    assert(decision.result.expected == 102);
+
+    // Old sequence is duplicate, not out of order.
+    decision = policy.evaluate(100);
+    assert(decision.action == SequenceAction::IgnoreDuplicate);
+    assert(decision.result.status == SequenceStatus::Duplicate);
+
+    // Recover in order.
+    decision = policy.evaluate(102);
+    assert(decision.action == SequenceAction::Accept);
+
+    decision = policy.evaluate(103);
+    assert(decision.action == SequenceAction::Accept);
+
+    decision = policy.evaluate(104);
+    assert(decision.action == SequenceAction::Accept);
+
+    decision = policy.evaluate(105);
+    assert(decision.action == SequenceAction::Accept);
+
+    assert(policy.tracker().next_expected() == 106);
+
+    policy.reset();
+
+    assert(!policy.tracker().initialized());
+    assert(policy.tracker().next_expected() == 0);
+
+    decision = policy.evaluate(500);
+    assert(decision.action == SequenceAction::Accept);
+    assert(decision.result.status == SequenceStatus::First);
+
+    std::cerr << "TEST: SequencePolicy PASSED\n";
+}
+
+
+
+        
+    // =========================================================
+    // 23. Test SequencedEventProcessor + OrderBookProcessor
+    // =========================================================
+
+    
+{
+    atlas::order_book::OrderBookProcessor order_book_processor(1);
+
+    SequencedEventProcessor processor(
+        order_book_processor
+    );
+
+    // First event: Accept
+    SequencedMarketEvent first{
+        .sequence_number = 100,
+        .event = OrderBookUpdate{
+            .instrument_id = 1,
+            .side = Side::Buy,
+            .price = 10000,
+            .quantity = 10,
+            .timestamp = 100
+        }
+    };
+
+    auto decision = processor.process(first);
+
+    assert(decision.action == SequenceAction::Accept);
+
+    // Second event: Accept
+    SequencedMarketEvent second{
+        .sequence_number = 101,
+        .event = OrderBookUpdate{
+            .instrument_id = 1,
+            .side = Side::Buy,
+            .price = 10001,
+            .quantity = 20,
+            .timestamp = 101
+        }
+    };
+
+    decision = processor.process(second);
+
+    assert(decision.action == SequenceAction::Accept);
+
+    // Duplicate: Ignore
+    SequencedMarketEvent duplicate{
+        .sequence_number = 101,
+        .event = OrderBookUpdate{
+            .instrument_id = 1,
+            .side = Side::Buy,
+            .price = 9990,
+            .quantity = 999,
+            .timestamp = 999
+        }
+    };
+
+    decision = processor.process(duplicate);
+
+    assert(decision.action == SequenceAction::IgnoreDuplicate);
+
+    const auto unchanged =
+        order_book_processor.order_book().best_bid();
+
+    assert(unchanged.has_value());
+    assert(unchanged->price == 10001);
+    assert(unchanged->quantity == 20);
+
+    // Gap: Detect, do not apply
+    SequencedMarketEvent gap{
+        .sequence_number = 103,
+        .event = OrderBookUpdate{
+            .instrument_id = 1,
+            .side = Side::Buy,
+            .price = 10002,
+            .quantity = 30,
+            .timestamp = 103
+        }
+    };
+
+    decision = processor.process(gap);
+
+    assert(decision.action == SequenceAction::GapDetected);
+
+    const auto after_gap =
+        order_book_processor.order_book().best_bid();
+
+    assert(after_gap.has_value());
+    assert(after_gap->price == 10001);
+    assert(after_gap->quantity == 20);
+
+    // Previously accepted sequence: Duplicate
+    SequencedMarketEvent old{
+        .sequence_number = 100,
+        .event = OrderBookUpdate{
+            .instrument_id = 1,
+            .side = Side::Buy,
+            .price = 9000,
+            .quantity = 999,
+            .timestamp = 9000
+        }
+    };
+
+    decision = processor.process(old);
+
+    assert(decision.action == SequenceAction::IgnoreDuplicate);
+
+    const auto after_old =
+        order_book_processor.order_book().best_bid();
+
+    assert(after_old.has_value());
+    assert(after_old->price == 10001);
+    assert(after_old->quantity == 20);
+
+    std::cerr
+        << "TEST 23: SequencedEventProcessor + "
+        << "OrderBookProcessor PASSED\n";
+}
+
+
+        
+    // =========================================================
+    // 24. Test FeedHealthTracker
+    // =========================================================
+
+{
+    FeedHealthTracker health_tracker;
+    SequencePolicy health_policy;
+
+    auto decision = health_policy.evaluate(100);
+    auto health = health_tracker.observe(decision);
+
+    assert(health.health == FeedHealth::Healthy);
+    assert(health.accepted_count == 1);
+
+    decision = health_policy.evaluate(101);
+    health = health_tracker.observe(decision);
+
+    assert(health.health == FeedHealth::Healthy);
+    assert(health.accepted_count == 2);
+
+    // Duplicate.
+    decision = health_policy.evaluate(101);
+    health = health_tracker.observe(decision);
+
+    assert(health.duplicate_count == 1);
+    assert(health.accepted_count == 2);
+
+    // Gap.
+    decision = health_policy.evaluate(103);
+    health = health_tracker.observe(decision);
+
+    assert(health.health == FeedHealth::GapDetected);
+    assert(health.gap_count == 1);
+
+    // Older sequence is duplicate.
+    decision = health_policy.evaluate(100);
+    health = health_tracker.observe(decision);
+
+    assert(health.duplicate_count == 2);
+    assert(health.out_of_order_count == 0);
+    assert(health.gap_count == 1);
+    assert(health.accepted_count == 2);
+
+    const auto snapshot = health_tracker.snapshot();
+
+    assert(snapshot.accepted_count == 2);
+    assert(snapshot.duplicate_count == 2);
+    assert(snapshot.gap_count == 1);
+    assert(snapshot.out_of_order_count == 0);
+
+    health_tracker.reset();
+
+    const auto reset_health = health_tracker.snapshot();
+
+    assert(reset_health.health == FeedHealth::Healthy);
+    assert(reset_health.accepted_count == 0);
+    assert(reset_health.duplicate_count == 0);
+    assert(reset_health.gap_count == 0);
+    assert(reset_health.out_of_order_count == 0);
+    assert(reset_health.next_expected == 0);
+    assert(reset_health.last_received == 0);
+
+    std::cerr << "TEST 24: FeedHealthTracker\n";
+}
+
+
+
+    // =========================================================
+// 25. Test SequenceTracker: Older Sequence -> Duplicate
+// =========================================================
+
+{
+    SequenceTracker tracker;
+
+    tracker.observe(100);
+    tracker.observe(101);
+
+    const auto duplicate = tracker.observe(100);
+
+    assert(duplicate.status == SequenceStatus::Duplicate);
+    assert(duplicate.expected == 102);
+    assert(duplicate.received == 100);
+
+    assert(tracker.next_expected() == 102);
+
+    std::cerr << "TEST 25: SequenceTracker Duplicate Detection\n";
+}
+
+
+
+{
+    atlas::order_book::OrderBookProcessor book_processor(1);
+
+    SequencedEventProcessor processor(book_processor);
+
+    auto make_event = [](std::uint64_t sequence) {
+        return SequencedMarketEvent{
+            .sequence_number = sequence,
+            .event = OrderBookUpdate{
+                .instrument_id = 1,
+                .side = Side::Buy,
+                .price = 10000,
+                .quantity = 10,
+                .timestamp = sequence
+            }
+        };
+    };
+
+    auto decision = processor.process(make_event(100));
+    assert(decision.action == SequenceAction::Accept);
+
+    decision = processor.process(make_event(101));
+    assert(decision.action == SequenceAction::Accept);
+
+    decision = processor.process(make_event(103));
+    assert(decision.action == SequenceAction::GapDetected);
+
+    // Recover missing sequence.
+    decision = processor.process(make_event(102));
+    assert(decision.action == SequenceAction::Accept);
+
+    // Resume previously rejected sequence.
+    decision = processor.process(make_event(103));
+    assert(decision.action == SequenceAction::Accept);
+
+    const auto health = processor.feed_health().snapshot();
+
+    assert(health.accepted_count == 4);
+    assert(health.gap_count == 1);
+    assert(health.next_expected == 104);
+    assert(health.last_received == 103);
+
+    // Historical gap remains recorded.
+    assert(health.health == FeedHealth::GapDetected);
+
+    std::cerr
+        << "TEST 26: SequencedEventProcessor recovery\n";
+}
+
+
+
+// =========================================================
+// 27. Test FeedRecoveryTracker detects and recovers from gap
+// =========================================================
+
+{
+    FeedRecoveryTracker recovery;
+
+    // Initial state must be Live.
+    auto snapshot = recovery.snapshot();
+
+    assert(snapshot.state == FeedRecoveryState::Live);
+
+    // Detect missing sequence 102.
+    snapshot = recovery.observe(102, 105);
+
+    assert(snapshot.state == FeedRecoveryState::GapDetected);
+    assert(snapshot.missing_sequence == 102);
+    assert(snapshot.recovery_sequence == 0);
+
+    // Begin recovery.
+    recovery.begin_recovery();
+
+    snapshot = recovery.snapshot();
+
+    assert(snapshot.state == FeedRecoveryState::Recovering);
+
+    // Receive the missing sequence.
+    snapshot = recovery.observe(102, 102);
+
+    assert(snapshot.state == FeedRecoveryState::Recovered);
+    assert(snapshot.missing_sequence == 102);
+    assert(snapshot.recovery_sequence == 102);
+
+    std::cerr
+        << "TEST 27: FeedRecoveryTracker gap detection and recovery PASSED\n";
+}
+
+
+// =========================================================
+// 28. Test FeedRecoveryTracker reset returns to Live
+// =========================================================
+
+{
+    FeedRecoveryTracker recovery;
+
+    // Create a gap.
+    recovery.observe(102, 105);
+
+    // Start recovery.
+    recovery.begin_recovery();
+
+    // Reset tracker.
+    recovery.reset();
+
+    const auto snapshot = recovery.snapshot();
+
+    assert(snapshot.state == FeedRecoveryState::Live);
+
+    assert(snapshot.missing_sequence == 0);
+    assert(snapshot.recovery_sequence == 0);
+
+    std::cerr
+        << "TEST 28: FeedRecoveryTracker reset PASSED\n";
+}
 
 
 

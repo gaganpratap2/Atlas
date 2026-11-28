@@ -1,5 +1,5 @@
-atlas_core_test 22 0.00222836
-atlas_market_data_test 12 0.00489932
-atlas_order_book_test 22 0.00237039
-atlas_market_data_order_book_integration_test 22 0.00331933
+atlas_core_test 44 0.00143267
+atlas_market_data_test 19 0.00494192
+atlas_order_book_test 44 0.00134165
+atlas_market_data_order_book_integration_test 44 0.00174885
 ---

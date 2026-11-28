@@ -31,6 +31,7 @@ public:
 private:
     bool initialized_{false};
     SequenceNumber next_expected_{0};
+    SequenceNumber last_received_{0};
 };
 
 }

@@ -26,6 +26,10 @@ add_library(atlas_core STATIC
     src/order_book/order_book_processor.cpp
 
     src/market_data/sequence_tracker.cpp
+    src/market_data/sequence_policy.cpp
+    src/market_data/sequenced_event_processor.cpp
+    src/market_data/feed_health.cpp
+    src/market_data/feed_recovery.cpp
 )
 
 target_include_directories(atlas_core
